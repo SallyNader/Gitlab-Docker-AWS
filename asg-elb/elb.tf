@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "web" {
 resource "aws_lb_listener" "web" {
   load_balancer_arn = aws_lb.web.arn
   port              = 80
-  protocol          = "TCP"
+  protocol          = "HTTP"
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.web.arn
