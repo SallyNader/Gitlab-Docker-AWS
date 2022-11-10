@@ -2,7 +2,7 @@ pipeline {
     agent 'any'
 
     environment {
-        KEY_PAIR = '/home/sally/Downloads/ec2-ssh.pem '
+        KEY_PAIR = '/home/sally/Downloads/ec2-ssh.pem'
         SSH_KEY = '/home/sally/.ssh/id_rsa.pub'
     }
 
