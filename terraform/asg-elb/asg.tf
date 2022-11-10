@@ -6,8 +6,14 @@ resource "aws_launch_template" "redhat" {
   vpc_security_group_ids = [aws_security_group.redhat-sg.id]
   user_data       = base64encode(file("${path.module}/bash/ssm-agent.sh"))
 
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name = "redhat-instance"
+    }
+  }
   tags = {
-    template_terraform = "redhat"
+    template_terraform = "redhat-template"
   }
 }
 

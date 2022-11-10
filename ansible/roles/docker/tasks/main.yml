@@ -1,0 +1,48 @@
+- name: Copy the authorized key file
+  authorized_key:
+    user: "{{ansible_user}}"
+    state: "{{status}}"
+    key: "{{ lookup('file', '{{ key }}')}}"
+
+- name: Checking def updates
+  def:
+    security: yes
+    state: latest
+
+- name: Install yum-utils
+  dnf:
+    name: yum-utils
+    state: latest
+
+- name: Add Docker repository
+  command: "yum config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"   
+
+- name: Checking yum updates
+  yum:
+    security: yes
+    state: latest
+
+- name: Remove conflicting packages
+  dnf:
+    name: "{{ packages }}"
+    state: absent  
+  vars:
+    packages:
+    - podman
+    - buildah    
+
+- name: Install Docker 
+  dnf:
+    name: "{{ packages }}"
+    state: latest   
+  vars:
+    packages:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io      
+
+- name: Enable Docker service
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes

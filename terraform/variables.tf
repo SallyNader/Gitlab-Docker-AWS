@@ -1,4 +1,4 @@
-variable "key_name"{}
+variable "key_name" {}
 variable "alb_name" {}
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
