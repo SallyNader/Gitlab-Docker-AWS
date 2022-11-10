@@ -4,7 +4,7 @@ resource "aws_lb" "web" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-sg.id]
-  subnets            = data.aws_subnet.default_subnets.*.id
+  subnets            = data.aws_subnet_ids.default_subnets.*.id
   tags = {
     alb_terraform = "web"
   }

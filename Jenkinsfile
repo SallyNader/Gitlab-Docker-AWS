@@ -1,7 +1,8 @@
 pipeline {
     agent 'any'
+
     stages {
-        stage('create resources') {
+        stage('Create Infrastructure') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'aws', passwordVariable: 'aws_secret_key', usernameVariable: 'aws_access_key')]) {
                     sh """
