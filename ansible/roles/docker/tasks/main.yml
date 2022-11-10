@@ -5,7 +5,7 @@
     key: "{{ lookup('file', '{{ key }}')}}"
 
 - name: Checking def updates
-  def:
+  dnf:
     security: yes
     state: latest
 
