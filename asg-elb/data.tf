@@ -1,6 +1,6 @@
 // Gets default vpc and subnets
 data "aws_subnet_ids" "default_subnets" {
-  vpc_id = "vpc-0d9cce260f6f48c31"
+  vpc_id = "vpc-0233df8a2f124c259"
 }
 
 data "aws_subnet" "default_subnet" {

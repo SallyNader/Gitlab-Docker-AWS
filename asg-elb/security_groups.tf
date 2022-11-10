@@ -1,7 +1,7 @@
 resource "aws_security_group" "redhat-sg" {
   name        = "Redhat Security Group"
   description = "Allow Web inbound and outbound traffic"
-  vpc_id      = "vpc-0d9cce260f6f48c31"
+  vpc_id      = "vpc-0233df8a2f124c259"
 
   ingress {
     description = "Allow ssh from everywhere"
@@ -30,7 +30,7 @@ resource "aws_security_group" "redhat-sg" {
 resource "aws_security_group" "alb-sg" {
   name        = "ALB Security Group"
   description = "Allow Web inbound and outbound traffic"
-  vpc_id      = "vpc-0d9cce260f6f48c31"
+  vpc_id      = "vpc-0233df8a2f124c259"
 
   ingress {
     description = "Allow http from everywhere"

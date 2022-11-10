@@ -2,7 +2,7 @@ resource "aws_launch_template" "redhat" {
   name            = "redhat"
   image_id        = "ami-06640050dc3f556bb"
   instance_type   = "t2.micro"
-  security_groups = [aws_security_group.redhat-sg]
+  vpc_security_group_ids = [aws_security_group.redhat-sg]
   user_data       = base64encode(file("${path.module}/bash/ssm-agent.sh"))
 
   tags = {

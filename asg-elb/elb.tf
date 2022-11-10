@@ -16,7 +16,7 @@ resource "aws_lb_target_group" "web" {
   name     = var.target_group_name
   port     = 80
   protocol = "TCP"
-  vpc_id   = "vpc-0d9cce260f6f48c31"
+  vpc_id   = "vpc-0233df8a2f124c259"
   tags = {
     target_group_terraform = "web"
   }
