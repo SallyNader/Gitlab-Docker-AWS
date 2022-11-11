@@ -8,7 +8,7 @@ resource "aws_lb" "web" {
 
   // Replaces dns name in the docker-compose file.
   provisioner "local-exec" {
-    command = "sed -i 's/hostname/${self.dns_name}/g' ../../python-docker/docker-compose.yml"
+    command = "sed -i 's/hostname/${self.dns_name}/g' /home/solly/Documents/Gitlab-Docker-AWS/python-docker/docker-compose.yml"
   }
 
   tags = {
