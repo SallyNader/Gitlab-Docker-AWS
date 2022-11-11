@@ -1,29 +1,29 @@
-# - name: Checking yum updates
-#   yum:
-#     security: yes
-#     state: latest
+- name: Checking yum updates
+  yum:
+    security: yes
+    state: latest
 
-# - name: Install Python 
-#   dnf:
-#     name: "python3"
-#     state: latest   
+- name: Install Python 
+  dnf:
+    name: "python3"
+    state: latest   
 
-# - name: download pip
-#   get_url: url='https://bootstrap.pypa.io/pip/3.6/get-pip.py' dest='/tmp' 
+- name: download pip
+  get_url: url='https://bootstrap.pypa.io/pip/3.6/get-pip.py' dest='/tmp' 
 
-# - name: Install pip
-#   command: "python3 /tmp/get-pip.py"
+- name: Install pip
+  command: "python3 /tmp/get-pip.py"
 
 - name: Install Python On Whales
   pip:
     name: "python-on-whales"
     state: latest
 
-# - name: Synchronize backend files
-#   synchronize:
-#     src: /home/sally/Documents/Gitlab-Docker-AWS/python-docker
-#     dest: /home/ec2-user
-#     recursive: true
+- name: Synchronize backend files
+  synchronize:
+    src: /home/solly/Documents/Gitlab-Docker-AWS/python-docker
+    dest: /home/ec2-user
+    recursive: true
 
 - name: Run script
   command: "python3 /home/ec2-user/python-docker/script.py"

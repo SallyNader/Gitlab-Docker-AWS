@@ -14,13 +14,14 @@ data "aws_instances" "nodes_ips" {
   instance_tags = {
     Name = "redhat-instance"
   }
+
   instance_state_names = ["running"]
   depends_on           = [aws_autoscaling_group.web]
 }
 
 resource "null_resource" "loop_list" {
   provisioner "local-exec" {
-    command     = "for item in $ITEMS; do echo $item >> /home/sally/Documents/Gitlab-Docker-AWS/ansible/inventory.txt; done"
+    command     = "for item in $ITEMS; do echo $item >> /home/solly/Documents/Gitlab-Docker-AWS/ansible/inventory.txt; done"
     environment = { ITEMS = join(" ", data.aws_instances.nodes_ips.public_ips) }
   }
 }

@@ -7,7 +7,7 @@
   gather_facts: false
   vars:
     - status : "present"
-    - key : "/home/sally/.ssh/id_rsa.pub"
+    - key : "/home/solly/.ssh/id_rsa.pub"
 
   roles:
     - docker

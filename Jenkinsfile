@@ -2,8 +2,8 @@ pipeline {
     agent 'any'
 
     environment {
-        KEY_PAIR = '/home/sally/Downloads/ec2-ssh.pem'
-        SSH_KEY = '/home/sally/.ssh/id_rsa.pub'
+        KEY_PAIR = '/home/solly/Downloads/ec2-ssh.pem'
+        SSH_KEY = '/home/solly/.ssh/id_rsa.pub'
     }
 
     stages {
@@ -20,14 +20,15 @@ pipeline {
             }
         }
 
-         stage('Install Docker') {
-            steps {
-                dir ("ansible") {
-                    sh """
-                        ansible-playbook install-docker.yml -i inventory.txt --user ec2-user --key-file /home/sally/Downloads/ec2-ssh.pem -e "key=/home/sally/.ssh/id_rsa.pub"
-                    """
-                }
-                
+        stage('Install Python and Docker') {
+          steps {
+            dir ("ansible") {
+              sh """
+                ansible-playbook install-python.yml -i inventory.txt --user ec2-user --key-file /home/solly/Downloads/ec2-ssh.pem -e "key=/home/solly/.ssh/id_rsa.pub"
+
+                ansible-playbook install-docker.yml -i inventory.txt --user ec2-user --key-file /home/solly/Downloads/ec2-ssh.pem -e "key=/home/solly/.ssh/id_rsa.pub"
+              """
+              }
             }
         }
     }

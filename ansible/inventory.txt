@@ -2,4 +2,3 @@
 ansible_ssh_common_args="-o StrictHostKeyChecking=no"
 
 [web]
-34.224.8.209
