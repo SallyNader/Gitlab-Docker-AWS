@@ -24,7 +24,7 @@ pipeline {
             steps {
                 dir ("ansible") {
                     sh """
-                        ansible-playbook install-docker.yml -i inventory.txt --user ec2-user --key-file "/home/sally/Downloads/ec2-ssh.pem" -e "key=/home/sally/.ssh/id_rsa.pub"
+                        ansible-playbook install-docker.yml -i inventory.txt --user ec2-user --key-file /home/sally/Downloads/ec2-ssh.pem -e "key=/home/sally/.ssh/id_rsa.pub"
                     """
                 }
                 
