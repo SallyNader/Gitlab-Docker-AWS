@@ -6,9 +6,9 @@ resource "aws_lb" "web" {
   security_groups    = [aws_security_group.alb-sg.id]
   subnets            = data.aws_subnet.default_subnet.*.id
 
- // Replaces dns name in the docker-compose file.
+  // Replaces dns name in the docker-compose file.
   provisioner "local-exec" {
-    command = "sed -i 's/hostname/${self.dns_name}/g' ${path.module}/../../python-docker/docker-compose.yml"
+    command = "sed -i 's/hostname/${self.dns_name}/g' ../../python-docker/docker-compose.yml"
   }
 
   tags = {
