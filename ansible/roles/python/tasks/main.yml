@@ -3,27 +3,42 @@
     security: yes
     state: latest
 
-- name: Install Python 
+- name: Install Dependencies 
   dnf:
-    name: "python3"
-    state: latest   
+    name: "{{ packages }}"
+    state: latest  
+  vars:
+      packages:
+      - gcc
+      - make
+      - openssl-devel
+      - bzip2-devel
+      - libffi-devel 
 
+- name: Download Python
+  get_url: url='https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz' dest='/opt'  
+
+- name: Unarchive Python Folder
+  unarchive:
+    src: /opt/Python-3.8.12.tgz
+    dest: /opt
+    remote_src: yes
+
+- name: Install Python
+  shell: 
+    cmd: "cd /opt/Python-3.8.12 && sudo ./configure --enable-optimizations && sudo make altinstall"
+  
 - name: download pip
   get_url: url='https://bootstrap.pypa.io/pip/3.6/get-pip.py' dest='/tmp' 
 
 - name: Install pip
-  command: "python3 /tmp/get-pip.py"
+  command: "python3.8 /tmp/get-pip.py"
 
 - name: Install Python On Whales
-  pip:
-    name: "python-on-whales"
-    state: latest
+  command: "/usr/local/bin/pip3 install python-on-whales"
 
-- name: Synchronize backend files
+- name: Transfer python-docker file to the remote instance
   synchronize:
     src: /home/solly/Documents/Gitlab-Docker-AWS/python-docker
     dest: /home/ec2-user
     recursive: true
-
-- name: Run script
-  command: "python3 /home/ec2-user/python-docker/script.py"

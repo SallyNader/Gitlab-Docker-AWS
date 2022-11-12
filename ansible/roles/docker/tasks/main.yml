@@ -47,3 +47,12 @@
     name: docker.service
     state: started
     enabled: yes
+
+- name: adding existing user "{{ ansible_user }}" to group docker
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+
+- name: Run script
+  command: "python3 /home/ec2-user/python-docker/script.py"
