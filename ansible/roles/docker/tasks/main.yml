@@ -37,6 +37,9 @@
     state: latest   
   vars:
     packages:
+    - vim
+    - curl
+    - wget
     - docker-ce
     - docker-ce-cli
     - containerd.io
@@ -48,7 +51,7 @@
     state: started
     enabled: yes
 
-- name: adding existing user "{{ ansible_user }}" to group docker
+- name: Add existing user "{{ ansible_user }}" to docker group
   user:
     name: "{{ ansible_user }}"
     groups: docker
@@ -58,5 +61,12 @@
   file:
     path: /run/docker.sock
     mode: u=rwX,g=rwX,o=rwX
+
+- name: Transfer python-docker folder to the remote instance
+  synchronize:
+    src: /home/solly/Documents/Gitlab-Docker-AWS/python-docker
+    dest: /home/ec2-user
+    recursive: true
+
 
 

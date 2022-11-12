@@ -8,7 +8,6 @@ data "aws_subnet" "default_subnet" {
   id    = tolist(data.aws_subnet_ids.default_subnets.ids)[count.index]
 }
 
-
 // Gets public ips of EC2 instance to insert it in inventory file.
 data "aws_instances" "nodes_ips" {
   instance_tags = {

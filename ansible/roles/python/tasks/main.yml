@@ -1,8 +1,3 @@
-- name: Checking yum updates
-  yum:
-    security: yes
-    state: latest
-
 - name: Install Dependencies 
   dnf:
     name: "{{ packages }}"
@@ -28,7 +23,7 @@
   shell: 
     cmd: "cd /opt/Python-3.8.12 && sudo ./configure --enable-optimizations && sudo make altinstall"
   
-- name: download pip
+- name: Download pip
   get_url: url='https://bootstrap.pypa.io/pip/3.6/get-pip.py' dest='/tmp' 
 
 - name: Install pip
@@ -36,9 +31,3 @@
 
 - name: Install Python On Whales
   command: "pip install python-on-whales"
-
-- name: Transfer python-docker file to the remote instance
-  synchronize:
-    src: /home/solly/Documents/Gitlab-Docker-AWS/python-docker
-    dest: /home/ec2-user
-    recursive: true

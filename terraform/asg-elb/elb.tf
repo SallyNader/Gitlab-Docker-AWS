@@ -6,16 +6,10 @@ resource "aws_lb" "web" {
   security_groups    = [aws_security_group.alb-sg.id]
   subnets            = data.aws_subnet.default_subnet.*.id
 
-  // Replaces dns name in the docker-compose file.
-  provisioner "local-exec" {
-    command = "sed -i 's/dns/${self.dns_name}/g' /home/solly/Documents/Gitlab-Docker-AWS/python-docker/docker-compose.yml"
-  }
-
   tags = {
     alb_terraform = "web"
   }
 }
-
 
 // Creates target group.
 resource "aws_lb_target_group" "web" {
@@ -36,5 +30,4 @@ resource "aws_lb_listener" "web" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.web.arn
   }
-
 }
