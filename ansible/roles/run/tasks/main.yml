@@ -5,9 +5,7 @@
     mode: '0775'
 
 - name: Add Gitlab environment variable
-  shell: "echo $GITLAB_HOME"    
-  environment:
-    GITLAB_HOME: /srv/gitlab
-
+  shell: "export GITLAB_HOME=/srv/gitlab"    
+ 
 - name: Run script
   command: "cd /home/ec2-user/python-docker && python3.8 script.py"

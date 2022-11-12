@@ -59,5 +59,4 @@
     path: /run/docker.sock
     mode: u=rwX,g=rwX,o=rwX
 
-- name: Run script
-  command: "cd /home/ec2-user/python-docker && python3.8 script.py"
+

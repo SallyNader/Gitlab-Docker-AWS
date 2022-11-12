@@ -10,7 +10,7 @@ services:
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
     ports:
       - '80:80'
-      - '2222:22'
+      - '2222:2222'
     volumes:
       - '$GITLAB_HOME/config:/etc/gitlab'
       - '$GITLAB_HOME/logs:/var/log/gitlab'

@@ -35,7 +35,7 @@
   command: "python3.8 /tmp/get-pip.py"
 
 - name: Install Python On Whales
-  command: "/usr/local/bin/pip3 install python-on-whales"
+  command: "pip install python-on-whales"
 
 - name: Transfer python-docker file to the remote instance
   synchronize:
