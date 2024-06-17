@@ -1,0 +1,13 @@
+- name: Install Docker on Redhat 8.
+  hosts: web
+  user: ec2-user
+  become: true
+  become_method: sudo
+  become_user: root  
+  gather_facts: false
+  vars:
+    - status : "present"
+    - key : "/home/solly/.ssh/id_rsa.pub"
+
+  roles:
+    - docker

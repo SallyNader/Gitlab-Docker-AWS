@@ -1,0 +1,72 @@
+- name: Copy the authorized key file
+  authorized_key:
+    user: "{{ansible_user}}"
+    state: "{{status}}"
+    key: "{{ lookup('file', '{{ key }}')}}"
+
+- name: Checking def updates
+  dnf:
+    security: yes
+    state: latest
+
+- name: Install yum-utils
+  dnf:
+    name: yum-utils
+    state: latest
+
+- name: Add Docker repository
+  command: "yum config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"   
+
+- name: Checking yum updates
+  yum:
+    security: yes
+    state: latest
+
+- name: Remove conflicting packages
+  dnf:
+    name: "{{ packages }}"
+    state: absent  
+  vars:
+    packages:
+    - podman
+    - buildah    
+
+- name: Install Docker 
+  dnf:
+    name: "{{ packages }}"
+    state: latest   
+  vars:
+    packages:
+    - vim
+    - curl
+    - wget
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose-plugin      
+
+- name: Enable Docker service
+  systemd:
+    name: docker.service
+    state: started
+    enabled: yes
+
+- name: Add existing user "{{ ansible_user }}" to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups: docker
+    append: yes
+
+- name: Run Docker without sudo permission
+  file:
+    path: /run/docker.sock
+    mode: u=rwX,g=rwX,o=rwX
+
+- name: Transfer python-docker folder to the remote instance
+  synchronize:
+    src: /home/solly/Documents/Gitlab-Docker-AWS/python-docker
+    dest: /home/ec2-user
+    recursive: true
+
+
+

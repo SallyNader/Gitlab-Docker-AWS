@@ -1,0 +1,33 @@
+- name: Install Dependencies 
+  dnf:
+    name: "{{ packages }}"
+    state: latest  
+  vars:
+      packages:
+      - gcc
+      - make
+      - openssl-devel
+      - bzip2-devel
+      - libffi-devel 
+
+- name: Download Python
+  get_url: url='https://www.python.org/ftp/python/3.8.12/Python-3.8.12.tgz' dest='/opt'  
+
+- name: Unarchive Python Folder
+  unarchive:
+    src: /opt/Python-3.8.12.tgz
+    dest: /opt
+    remote_src: yes
+
+- name: Install Python
+  shell: 
+    cmd: "cd /opt/Python-3.8.12 && sudo ./configure --enable-optimizations && sudo make altinstall"
+  
+- name: Download pip
+  get_url: url='https://bootstrap.pypa.io/pip/3.6/get-pip.py' dest='/tmp' 
+
+- name: Install pip
+  command: "python3.8 /tmp/get-pip.py"
+
+- name: Install Python On Whales
+  command: "pip install python-on-whales"

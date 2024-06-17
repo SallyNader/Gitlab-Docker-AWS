@@ -1,0 +1,11 @@
+- name: Create Gitlab folder
+  file:
+    path: /srv/gitlab
+    state: directory
+    mode: '0775'
+
+- name: Add Gitlab environment variable
+  shell: "export GITLAB_HOME=/srv/gitlab"    
+ 
+- name: Run Python script
+  command: "cd /home/ec2-user/python-docker && python3.8 script.py"

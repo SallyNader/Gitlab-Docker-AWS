@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: always
+    hostname: 'web-alb-805138888.us-east-1.elb.amazonaws.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://web-alb-805138888.us-east-1.elb.amazonaws.com:80'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+    ports:
+      - '80:80'
+      - '2222:2222'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    shm_size: '256m'
+
