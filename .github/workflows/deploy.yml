@@ -12,5 +12,5 @@ jobs:
           
           chmod 400 ~/.ssh/id_rsa
           cat ~/.ssh/id_rsa
-          ssh -i ~/.ssh/id_rsa ubuntu@3.252.249.108 -o StrictHostKeyChecking=no  "echo 'SSH connection successful'"
-          touch ~/hello.txt
+          ssh -i ~/.ssh/id_rsa ubuntu@3.252.249.108 -o StrictHostKeyChecking=no  "touch ~/hello.txt"
+          
