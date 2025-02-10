@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: "echo test"
         run: |
-          echo "${{ secrets.ID_RSA }}" > ~/.ssh/id_rsa
+          echo "${{ vars.ID_RSA }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh -i ~/.ssh/id_rsa ubuntu@3.252.249.108 -o StrictHostKeyChecking=no
           touch ~/hello.txt
