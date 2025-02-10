@@ -1,4 +1,5 @@
 name: Deploy Code
+on: [push, workflow_dispatch]
 jobs:
   deploy:
     runs-on: ubuntu-latest
