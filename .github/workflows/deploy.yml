@@ -9,8 +9,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "${{ vars.ID_RSA }}" > ~/.ssh/id_rsa
-          cat ${{ vars.ID_RSA }}
-          cat  ~/.ssh/id_rsa
+          
           chmod 400 ~/.ssh/id_rsa
           ssh -i ~/.ssh/id_rsa ubuntu@3.252.249.108 -o StrictHostKeyChecking=no  "echo 'SSH connection successful'"
           touch ~/hello.txt
