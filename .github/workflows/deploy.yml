@@ -6,4 +6,5 @@ jobs:
     steps:
       - name: "echo test"
         run: |
-          echo "test this code"
+          ssh -i ${{secrets.ID_RSA}} ubuntu@3.252.249.108 -o StrictHostKeyChecking=no
+          touch ~/hello.txt
