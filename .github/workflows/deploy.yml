@@ -1,0 +1,8 @@
+name: Deploy Code
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "echo test"
+        run: |
+          echo "test this code"
